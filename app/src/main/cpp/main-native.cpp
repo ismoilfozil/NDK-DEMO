@@ -14,40 +14,6 @@ using namespace std;
 #define CONNECT_PACKAGE(NAME) Java_uz_gita_circleimage_MainActivity_##NAME
 #define fun(TYPE, NAME, ...) JNIEXPORT TYPE JNICALL CONNECT_PACKAGE(NAME)(JNIEnv *env, jobject thiz, ## __VA_ARGS__)
 
-//extern "C"
-//JNIEXPORT void JNICALL
-//Java_uz_gita_circleimage_MainActivity_makeCircle(JNIEnv *env, jobject thiz, jintArray data,jint width, jint height) {
-//
-//    int index, r;
-//    int x, y;
-//
-//    // Get input data
-//    jint *buffer = env->GetIntArrayElements(data, NULL);
-//    env->ReleaseIntArrayElements(data, buffer, JNI_ABORT);
-//
-//
-//    if (width > height) {
-//        r = height / 2;
-//    } else {
-//        r = width / 2;
-//    }
-//
-//
-//    for (y = 0; y <= height - 1; y++) {
-//        for (x = 0; x <= width - 1; x++) {
-//            index = y * width + x;
-//            bool b = ((x - width / 2) * (x - width / 2) + (y - height / 2) * (y - height / 2) >
-//                      r * r);
-//            if (b) {
-//                buffer[index] = 0;
-//            }
-//        }
-//    }
-//
-//
-//    // Update output array
-//    env->SetIntArrayRegion(data, 0, width * height, buffer);
-//}
 
 extern "C" {
 
@@ -59,7 +25,6 @@ extern "C" {
         int index, r;
         int x, y;
 
-        // Get input data
         jint *buffer = env->GetIntArrayElements(data, NULL);
         env->ReleaseIntArrayElements(data, buffer, JNI_ABORT);
 
@@ -82,10 +47,11 @@ extern "C" {
             }
         }
 
-        // Update output array
         env->SetIntArrayRegion(data, 0, width * height, buffer);
     }
 }
+
+
 
 
 
@@ -161,6 +127,42 @@ extern "C" {
 //    }
 //
 //    free(tem);
+//    // Update output array
+//    env->SetIntArrayRegion(data, 0, width * height, buffer);
+//}
+
+
+//extern "C"
+//JNIEXPORT void JNICALL
+//Java_uz_gita_circleimage_MainActivity_makeCircle(JNIEnv *env, jobject thiz, jintArray data,jint width, jint height) {
+//
+//    int index, r;
+//    int x, y;
+//
+//    // Get input data
+//    jint *buffer = env->GetIntArrayElements(data, NULL);
+//    env->ReleaseIntArrayElements(data, buffer, JNI_ABORT);
+//
+//
+//    if (width > height) {
+//        r = height / 2;
+//    } else {
+//        r = width / 2;
+//    }
+//
+//
+//    for (y = 0; y <= height - 1; y++) {
+//        for (x = 0; x <= width - 1; x++) {
+//            index = y * width + x;
+//            bool b = ((x - width / 2) * (x - width / 2) + (y - height / 2) * (y - height / 2) >
+//                      r * r);
+//            if (b) {
+//                buffer[index] = 0;
+//            }
+//        }
+//    }
+//
+//
 //    // Update output array
 //    env->SetIntArrayRegion(data, 0, width * height, buffer);
 //}
